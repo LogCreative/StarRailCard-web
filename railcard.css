@@ -1,0 +1,55 @@
+#railcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+#railcard #railcard_headbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    width: 80%;
+    flex-wrap: wrap;
+}
+#railcard #railcard_headbar .imgdiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+}
+#railcard #railcard_headbar .imgdiv:hover {
+    cursor: pointer;
+}
+#railcard #railcard_headbar img {
+    width: 48px;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0px 0px whitesmoke;
+    border: 0px solid white;
+    border-radius: 0px 10px 0px 0px;
+}
+#railcard #railcard_headbar .rarity5 {
+    background-image: linear-gradient(rgb(144,89,82), rgb(196,160,109));
+}
+#railcard #railcard_headbar .rarity4 {
+    background-image: linear-gradient(rgb(64,66,101),rgb(149,99,204));
+}
+#railcard #railcard_headbar .rarity5,
+#railcard #railcard_headbar .rarity4 {
+    width: 56px;
+    box-shadow: 2px 2px 2px 1px whitesmoke;
+    border-width: 2px 2px 0px 2px;
+    border-style: double;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+#railcard #railcard_detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+#railcard #railcard_detail_img {
+    max-width: 100%;
+}
