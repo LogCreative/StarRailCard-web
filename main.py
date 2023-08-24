@@ -18,6 +18,8 @@ parser.add_argument('--lang', '-l', metavar='L', choices=supportLang.keys(), def
 parser.add_argument('--preserve', '-p', metavar='P', type=bool, default=False,
                     help="whether to preserve previous character runs, " + 
                     "which is useful if you want to display more characters (default: False)")
+parser.add_argument('--template', '-t', metavar='T', type=int, help="teamplate", default=3)
+
 args = parser.parse_args()
 
 uid       = args.uid
@@ -25,6 +27,7 @@ outputdir = args.outputdir
 imgdir    = outputdir if args.imgdir is None else args.imgdir
 lang      = args.lang
 preserve  = args.preserve
+template = args.template
 
 if os.path.exists(outputdir):
     if not preserve:
@@ -32,7 +35,7 @@ if os.path.exists(outputdir):
 os.makedirs(outputdir, exist_ok=True)
 
 async def main():
-    async with honkaicard.MiHoMoCard(lang=lang) as hmhm:
+    async with honkaicard.MiHoMoCard(lang=lang, template = template, background = False, save = True) as hmhm:
 
         # avatar
         user_profile = await hmhm.API.get_full_data(uid)
@@ -47,8 +50,8 @@ async def main():
         character_list_str = []
         for character_card in r.card:
             character_fullname = "{}-{}".format(character_card.name.replace(' ','_'), character_card.rarity)
-            character_card_filename = "card-{}.jpg".format(character_fullname)
-            character_card.card.convert('RGB').save(os.path.join(outputdir, character_card_filename))
+            character_card_filename = "card-{}.png".format(character_fullname)
+            character_card.card.save(os.path.join(outputdir, character_card_filename))
             character_list_str.append('"{}"'.format(character_fullname))
 
         # in case there are more characters in the folder

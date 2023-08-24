@@ -9,22 +9,25 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: 10px;
-    width: 80%;
+    margin-top: 2%;
+    margin-bottom: 100px;
+    width: 100%;
+    height: 180px;
+    background-color: rgba(0,0,0,0.2);
     flex-wrap: wrap;
 }
 #railcard #railcard_headbar .imgdiv {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 64px;
-    height: 64px;
+    width: 150px;
+    height: 150px;
 }
 #railcard #railcard_headbar .imgdiv:hover {
     cursor: pointer;
 }
 #railcard #railcard_headbar img {
-    width: 48px;
+    width: 120px;
     transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0px 0px whitesmoke;
     border: 0px solid white;
@@ -38,12 +41,20 @@
 }
 #railcard #railcard_headbar .rarity5,
 #railcard #railcard_headbar .rarity4 {
-    width: 56px;
-    box-shadow: 2px 2px 2px 1px whitesmoke;
+    width: 100%;
+    box-shadow: 2px 2px 5px 1px;
     border-width: 2px 2px 0px 2px;
     border-style: double;
     border-color: rgba(255, 255, 255, 0.5);
 }
+
+#railcard_detail_img:hover {
+  transition: transform 0.3s ease-in-out;
+  -webkit-transform: scale(0.2);
+  -ms-transform: scale(0.2);
+  transform: scale(1.1);
+}
+
 #railcard #railcard_detail {
     display: flex;
     align-items: center;
@@ -51,5 +62,25 @@
     width: 100%;
 }
 #railcard #railcard_detail_img {
+    transition: transform 0.3s ease-in-out;
     max-width: 100%;
+    border-radius: 30px;
+    box-shadow: 0px 10px 20px 5px black; 
+}
+
+
+html {
+  background-image: url(https://i.ibb.co/cvBHZ1m/imgonline-com-ua-Blur-5xm-AWe7-Ks-T1-Y.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
