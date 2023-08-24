@@ -40,7 +40,8 @@ async def main():
         # avatar
         user_profile = await hmhm.API.get_full_data(uid)
         for character in user_profile.characters:
-            character_avatar_filename = "avatar-{}-{}.png".format(character.name.replace(' ','_'), character.rarity)
+            print(character.name)
+            character_avatar_filename = "avatar-{}-{}.png".format(character.id, character.rarity)
             character_avatar = await get_dowload_img(character.icon)
             character_avatar.save(os.path.join(outputdir, character_avatar_filename))
 
@@ -49,7 +50,7 @@ async def main():
         print(r)
         character_list_str = []
         for character_card in r.card:
-            character_fullname = "{}-{}".format(character_card.name.replace(' ','_'), character_card.rarity)
+            character_fullname = "{}-{}".format(character_card.id.replace(' ','_'), character_card.rarity)
             character_card_filename = "card-{}.png".format(character_fullname)
             character_card.card.save(os.path.join(outputdir, character_card_filename))
             character_list_str.append('"{}"'.format(character_fullname))
