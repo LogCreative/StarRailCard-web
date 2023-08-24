@@ -35,7 +35,7 @@ if os.path.exists(outputdir):
 os.makedirs(outputdir, exist_ok=True)
 
 async def main():
-    async with honkaicard.MiHoMoCard(lang=lang, template = template, background = False, save = True) as hmhm:
+    async with honkaicard.MiHoMoCard(lang=lang, template = template, background = False) as hmhm:
 
         # avatar
         user_profile = await hmhm.API.get_full_data(uid)
