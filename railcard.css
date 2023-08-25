@@ -13,7 +13,6 @@
     margin-bottom: 100px;
     width: 100%;
     height: 180px;
-    background-color: rgba(0,0,0,0.2);
     flex-wrap: wrap;
 }
 #railcard #railcard_headbar .imgdiv {
@@ -66,21 +65,4 @@
     max-width: 100%;
     border-radius: 30px;
     box-shadow: 0px 10px 20px 5px black; 
-}
-
-
-html {
-  background-image: url(https://i.ibb.co/cvBHZ1m/imgonline-com-ua-Blur-5xm-AWe7-Ks-T1-Y.png);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-body {
-  margin: 0;
-  padding: 0;
 }
