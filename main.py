@@ -27,7 +27,7 @@ outputdir = args.outputdir
 imgdir    = outputdir if args.imgdir is None else args.imgdir
 lang      = args.lang
 preserve  = args.preserve
-template = args.template
+template  = args.template
 
 if os.path.exists(outputdir):
     if not preserve:
