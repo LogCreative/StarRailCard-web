@@ -34,6 +34,10 @@ os.makedirs(outputdir, exist_ok=True)
 async def main():
     async with honkaicard.MiHoMoCard(lang=lang) as hmhm:
 
+        profile_result = await hmhm.get_profile(uid,  card = True)
+        print(profile_result)
+        profile_result.card.convert('RGB').save(os.path.join(outputdir, 'profile.jpg'))
+
         # avatar
         user_profile = await hmhm.API.get_full_data(uid)
         for character in user_profile.characters:
