@@ -15,10 +15,12 @@ And run the script, pass the uid as the argument:
 ```bash
 python main.py -u 109814396
 ```
-If you want to change the language, for example, to Chinese (Simplified), then use:
+If you want to change the language, for example, to Chinese (Simplified) with the correct font being used, then use:
 ```bash
-python main.py -u 109814396 -l cn
+python main.py -u 109814396 -l cn -f "NotoSansCJKsc-Bold"
 ```
+where `NotoSansCJKsc-Bold` font should be installed on your computer manually.
+
 You could get more help by
 ```bash
 python main.py -h

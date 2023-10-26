@@ -15,6 +15,8 @@ parser.add_argument('--imgdir', '-fo', metavar='FO', type=str, default=None,
                     help="final imgdir variable in railcard_config.js (default: <outputdir>)")
 parser.add_argument('--lang', '-l', metavar='L', choices=supportLang.keys(), default='en',
                     help="display language (default: en)")
+parser.add_argument('--font', '-f', metavar='F', type=str, default=None,
+                    help="the name or the path for the font to be used (default: None)")
 parser.add_argument('--preserve', '-p', metavar='P', type=bool, default=False,
                     help="whether to preserve previous character runs, " + 
                     "which is useful if you want to display more characters (default: False)")
@@ -24,6 +26,7 @@ uid       = args.uid
 outputdir = args.outputdir
 imgdir    = outputdir if args.imgdir is None else args.imgdir
 lang      = args.lang
+font      = args.font
 preserve  = args.preserve
 
 if os.path.exists(outputdir):
@@ -32,7 +35,7 @@ if os.path.exists(outputdir):
 os.makedirs(outputdir, exist_ok=True)
 
 async def main():
-    async with honkaicard.MiHoMoCard(lang=lang) as hmhm:
+    async with honkaicard.MiHoMoCard(lang=lang, font=font) as hmhm:
 
         profile_result = await hmhm.get_profile(uid,  card = True)
         print(profile_result)
