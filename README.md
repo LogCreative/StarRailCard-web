@@ -26,4 +26,4 @@ You could get more help by
 python main.py -h
 ```
 
-After the generation, you could open `railcard.html` directly to preview the result. You could directly deploy those files to your website. Click the avatar to display the detail of different characters.
+After the generation, you could open `railcard.html` directly to preview the result. You could directly deploy those files to your website. Click the avatar to display the detail of different characters. And `profile.jpg` is also generated for your own use. You could add your customized style to make it look better.
