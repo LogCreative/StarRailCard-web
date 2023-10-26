@@ -9,6 +9,8 @@ from starrailcard.src.tools.translation import supportLang
 parser = argparse.ArgumentParser(prog='Star Rail Card Web',
             description='A static web page generator for StarRailCard')
 parser.add_argument('--uid', '-u', metavar='U', type=str, help="account uid", required=True)
+parser.add_argument('--template', '-t', metavar='T', type=int, default=3,
+                    help="template type (default: 3)")
 parser.add_argument('--outputdir', '-o', metavar='O', type=str, default='RailCard',
                     help="image directory for saving (default: RailCard)")
 parser.add_argument('--imgdir', '-fo', metavar='FO', type=str, default=None,
@@ -23,6 +25,7 @@ parser.add_argument('--preserve', '-p', metavar='P', type=bool, default=False,
 args = parser.parse_args()
 
 uid       = args.uid
+template  = args.template
 outputdir = args.outputdir
 imgdir    = outputdir if args.imgdir is None else args.imgdir
 lang      = args.lang
@@ -35,7 +38,7 @@ if os.path.exists(outputdir):
 os.makedirs(outputdir, exist_ok=True)
 
 async def main():
-    async with honkaicard.MiHoMoCard(lang=lang, font=font) as hmhm:
+    async with honkaicard.MiHoMoCard(template=template, lang=lang, font=font) as hmhm:
 
         profile_result = await hmhm.get_profile(uid,  card = True)
         print(profile_result)
