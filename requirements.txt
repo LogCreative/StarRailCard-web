@@ -1,2 +1,2 @@
-starrailcard
+starrailcard>=1.2.2
 bs4

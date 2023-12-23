@@ -17,9 +17,9 @@ python main.py -u 109814396
 ```
 If you want to change the language, for example, to Chinese (Simplified) with the correct font being used, then use:
 ```bash
-python main.py -u 109814396 -l cn -f "NotoSansCJKsc-Bold"
+python main.py -u 109814396 -l cn -f "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
 ```
-where `NotoSansCJKsc-Bold` font should be installed on your computer manually.
+where `/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc` font should be installed on your computer manually.
 
 You could get more help by
 ```bash
