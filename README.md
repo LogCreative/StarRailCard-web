@@ -6,6 +6,8 @@ A static web page generator for StarRailCard based on [StarRailCard](https://git
 
 ## Usage
 
+Install Python 3.11 and above.
+
 Install the dependencies:
 ```bash
 pip install -r requirements.txt

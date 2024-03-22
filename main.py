@@ -2,20 +2,21 @@ import asyncio
 import os, shutil, sys
 import argparse
 
-from starrailcard import honkaicard
+import starrailcard
+from starrailcard.src.api import api
 from starrailcard.src.tools.pill import get_dowload_img
-from starrailcard.src.tools.translation import supportLang
+from starrailcard.src.tools.translator import SUPPORTED_LANGUAGES
 
 parser = argparse.ArgumentParser(prog='Star Rail Card Web',
             description='A static web page generator for StarRailCard')
 parser.add_argument('--uid', '-u', metavar='U', type=str, help="account uid", required=True)
-parser.add_argument('--template', '-t', metavar='T', type=int, default=3,
-                    help="template type (default: 3)")
+parser.add_argument('--style', '-s', metavar='S', type=int, default=2,
+                    help="style type (default: 2)")
 parser.add_argument('--outputdir', '-o', metavar='O', type=str, default='RailCard',
                     help="image directory for saving (default: RailCard)")
 parser.add_argument('--imgdir', '-fo', metavar='FO', type=str, default=None,
                     help="final imgdir variable in railcard_config.js (default: <outputdir>)")
-parser.add_argument('--lang', '-l', metavar='L', choices=supportLang.keys(), default='en',
+parser.add_argument('--lang', '-l', metavar='L', choices=SUPPORTED_LANGUAGES.keys(), default='en',
                     help="display language (default: en)")
 parser.add_argument('--font', '-f', metavar='F', type=str, default=None,
                     help="the name or the path for the font to be used (default: None)")
@@ -25,7 +26,7 @@ parser.add_argument('--preserve', '-p', metavar='P', type=bool, default=False,
 args = parser.parse_args()
 
 uid       = args.uid
-template  = args.template
+style     = args.style
 outputdir = args.outputdir
 imgdir    = outputdir if args.imgdir is None else args.imgdir
 lang      = args.lang
@@ -38,21 +39,21 @@ if os.path.exists(outputdir):
 os.makedirs(outputdir, exist_ok=True)
 
 async def main():
-    async with honkaicard.MiHoMoCard(template=template, lang=lang, font=font) as hmhm:
+    async with starrailcard.Card(lang=lang, user_font=font) as card:
 
-        profile_result = await hmhm.get_profile(uid,  card = True)
+        profile_result = await card.creat_profile(uid)
         print(profile_result)
         profile_result.card.convert('RGB').save(os.path.join(outputdir, 'profile.jpg'))
 
         # avatar
-        user_profile = await hmhm.API.get_full_data(uid)
+        user_profile = await api.ApiMiHoMo(uid, lang=lang).get()
         for character in user_profile.characters:
             character_avatar_filename = "avatar-{}-{}.png".format(character.name.replace(' ','_'), character.rarity)
             character_avatar = await get_dowload_img(character.icon)
             character_avatar.save(os.path.join(outputdir, character_avatar_filename))
 
         # card
-        r = await hmhm.creat(uid=uid)
+        r = await card.creat(uid=uid, style=style)
         print(r)
         character_list_str = []
         for character_card in r.card:
