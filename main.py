@@ -4,7 +4,7 @@ import argparse
 
 import starrailcard
 from starrailcard.src.api import api
-from starrailcard.src.tools.pill import get_dowload_img
+from starrailcard.src.tools.pill.image_control import get_download_img
 from starrailcard.src.tools.translator import SUPPORTED_LANGUAGES
 
 parser = argparse.ArgumentParser(prog='Star Rail Card Web',
@@ -41,7 +41,7 @@ os.makedirs(outputdir, exist_ok=True)
 async def main():
     async with starrailcard.Card(lang=lang, user_font=font) as card:
 
-        profile_result = await card.creat_profile(uid)
+        profile_result = await card.create_profile(uid)
         print(profile_result)
         profile_result.card.convert('RGB').save(os.path.join(outputdir, 'profile.jpg'))
 
@@ -49,11 +49,11 @@ async def main():
         user_profile = await api.ApiMiHoMo(uid, lang=lang).get()
         for character in user_profile.characters:
             character_avatar_filename = "avatar-{}-{}.png".format(character.name.replace(' ','_'), character.rarity)
-            character_avatar = await get_dowload_img(character.icon)
+            character_avatar = await get_download_img(character.icon)
             character_avatar.save(os.path.join(outputdir, character_avatar_filename))
 
         # card
-        r = await card.creat(uid=uid, style=style)
+        r = await card.create(uid=uid, style=style)
         print(r)
         character_list_str = []
         for character_card in r.card:
